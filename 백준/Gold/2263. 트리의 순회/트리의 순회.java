@@ -1,4 +1,7 @@
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
 public class Main {
     static int n;
@@ -15,17 +18,19 @@ public class Main {
         printPostorder(sPost + divide - sIn, ePost - 1, divide + 1, eIn);
     }
 
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        n = scanner.nextInt();
+    public static void main(String[] args) throws IOException {
+        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+        n = Integer.parseInt(bf.readLine());
         inOrder = new int[n];
         postOrder = new int[n];
         index = new int[n + 1];
+        StringTokenizer st = new StringTokenizer(bf.readLine());
         for (int i = 0; i < n; i++) {
-            inOrder[i] = scanner.nextInt();
+            inOrder[i] = Integer.parseInt(st.nextToken());
         }
+        st = new StringTokenizer(bf.readLine());
         for (int i = 0; i < n; i++) {
-            postOrder[i] = scanner.nextInt();
+            postOrder[i] = Integer.parseInt(st.nextToken());
         }
         for (int i = 0; i < n; i++) {
             index[inOrder[i]] = i;
