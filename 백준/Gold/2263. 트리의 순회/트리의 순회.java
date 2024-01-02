@@ -10,7 +10,6 @@ public class Main {
     static int[] index;//inOrder의 원소가 위차한 인덱스를 저장하는 배열
 
     static void printPostorder(int sPost, int ePost, int sIn, int eIn) {
-        //System.out.println("sPost: "+sPost+" ePost: "+ePost+" sIn: "+sIn+" eIn: "+eIn);
         if (sPost > ePost) return;
         System.out.print(postOrder[ePost] + " ");
         int divide = index[postOrder[ePost]];
