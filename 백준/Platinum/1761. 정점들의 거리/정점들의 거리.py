@@ -48,19 +48,21 @@ def lca(a, b):
         a, b = b, a
     # a를 b의 위치까지 올리기
     while depth[a] > depth[b]:
-        update = 0
-        for log in range(1, logTable[a] + 1):
-            if depth[lcaTable[a][log][0]] < depth[b]:
-                update = log - 1
+        update = logTable[a]
+        for log in range(update, -1, -1):
+            assert lcaTable[a][log][0] != -1, 'invalid value of lcaTable: 1'
+            update = log
+            if depth[lcaTable[a][log][0]] >= depth[b]:
                 break
         ret += lcaTable[a][update][1]
         a = lcaTable[a][update][0]
     assert depth[a] == depth[b], 'depth of a and b do not match'
     while a != b:
-        update = 0
-        for log in range(1, logTable[a] + 1):
-            if lcaTable[a][log][0] == lcaTable[b][log][0]:
-                update = log - 1
+        update = logTable[a]
+        for log in range(update, -1, -1):
+            assert lcaTable[a][log][0] != -1, 'invalid value of lcaTable: 2'
+            update = log
+            if lcaTable[a][log][0] != lcaTable[b][log][0]:
                 break
         ret += lcaTable[a][update][1]
         ret += lcaTable[b][update][1]
