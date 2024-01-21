@@ -8,6 +8,8 @@ menu.sort()
 result = 0
 weight = 2
 for i in range(2, N + 1):  # 시그마 표현으로는 i=2~N => 인덱싱 때문에 약간 조정
-    result += (weight - 1) * (menu[i - 1] - menu[N - i])
+    result += (weight - 1) * (menu[i - 1] - menu[N - i] + 1000000007)
+    result %= 1000000007
     weight *= 2
-print(result % 1000000007)
+    weight %= 1000000007
+print(result)
