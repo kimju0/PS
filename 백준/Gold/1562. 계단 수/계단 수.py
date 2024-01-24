@@ -8,16 +8,16 @@ for i in range(1, 10):
     dpTable[1][i][1 << i] = 1
 for i in range(2, N + 1):
     for j in range(10):
-        if j != 0:
-            for k in range(1024):  # 1 작은 수에서 현재 j로 확장되는 경우
-                dpTable[i][j][k | (1 << j)] = (
-                        dpTable[i][j][k | (1 << j)] % 1000000000 + dpTable[i - 1][j - 1][k] % 1000000000)
-                dpTable[i][j][k | 1 << j] %= 1000000000
-        if j != 9:
-            for k in range(1024):  # 1 큰 수에서 현재 j로 확장되는 경우
-                dpTable[i][j][k | (1 << j)] = (
-                        dpTable[i][j][k | (1 << j)] % 1000000000 + dpTable[i - 1][j + 1][k] % 1000000000)
-                dpTable[i][j][k | (1 << j)] %= 1000000000
+        for k in range(1024):
+            state = k | 1 << j
+            if j != 0:
+                dpTable[i][j][state] = (
+                        dpTable[i][j][state] % 1000000000 + dpTable[i - 1][j - 1][k] % 1000000000)
+                dpTable[i][j][state] %= 1000000000
+            if j != 9:
+                dpTable[i][j][state] = (
+                        dpTable[i][j][state] % 1000000000 + dpTable[i - 1][j + 1][k] % 1000000000)
+                dpTable[i][j][state] %= 1000000000
 
 res = 0
 for i in range(10):
