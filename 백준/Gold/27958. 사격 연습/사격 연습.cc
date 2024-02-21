@@ -11,12 +11,7 @@ void simulate(){
       tempPointBoard[i][j]=board[i][j];
     }
   }
-  //cout<<"DEBUG"<<endl;
   for(int i=0;i<K;i++){
-    //cout<<"state[i] : "<<state[i]<<endl;
-  }
-  for(int i=0;i<K;i++){
-    //cout<<"DEBUG"<<endl;
     int curY=state[i],curX=0,bulletAttack=bullet[i];
     while(curX<N&&tempBoard[curY][curX]<=0){
       curX++;
@@ -44,12 +39,10 @@ void simulate(){
     }
   }
   if(res<tempRes) res=tempRes;
-  //cout<<"DEBUG-end"<<endl;
 }
 
 void back_tracking(int cnt){
   if(cnt == K){
-    //cout<<"DEBUG"<<endl;
     simulate();
     return;
   }
@@ -64,17 +57,14 @@ int main(){
   cin.tie(NULL);
   cout.tie(NULL);
   cin>>N>>K;
-  //cout<<"DEBUG"<<endl;
   for(int i=0;i<N;i++){
     for(int j=0;j<N;j++){
       cin>>board[i][j];
     }
   }
-  //cout<<"DEBUG"<<endl;
   for(int i=0;i<K;i++){
     cin>>bullet[i];
   }
-  //cout<<"DEBUG"<<endl;
   back_tracking(0);
   cout<<res;
   return 0;
