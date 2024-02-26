@@ -12,18 +12,7 @@ queue<pair<int, int>> q;
 int dy[4]={1,-1,0,0};
 int dx[4]={0,0,1,-1};
 
-void print(){
-  cout<<"DEBUG"<<endl;
-  for(int i=0;i<N;i++){
-    for(int j=0;j<N;j++){
-      cout<<board[i][j]<<' ';
-    }
-    cout<<endl;
-  }
-}
-
-bool bfs(){//먹을 수 있는 물고기가 있는지 반환
-  //print();
+bool bfs(){
   int ty,tx,cy,cx,ny,nx,td,cd;
   candidateFish.clear();
   q=queue<pair<int, int>>();
@@ -54,15 +43,12 @@ bool bfs(){//먹을 수 있는 물고기가 있는지 반환
         candidateFish.push_back(make_tuple(check[ny][nx],ny,nx));
         
       q.push(make_pair(ny,nx));
-      //cout<<"PLS"<<endl;
     }
   }
   
   
   if(candidateFish.empty())
     return false;
-  
-  //cout<<"DEBUG"<<endl;
   
   int target=0;
   for(int i=0;i<candidateFish.size();i++){
@@ -95,7 +81,6 @@ bool bfs(){//먹을 수 있는 물고기가 있는지 반환
   board[ty][tx]=0;
   res+=td;
   coorOfShark=make_pair(ty,tx);
-  //cout<<ty<<' '<<tx<<endl;
   return true;
 }
 
