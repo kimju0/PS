@@ -18,8 +18,6 @@ double calc(int a,int b, int c){
   if(t[2]>=t[0]+t[1]) return 0;
   p=(t[0]+t[1]+t[2])/2.;
   ret=sqrt(p*(p-t[0])*(p-t[1])*(p-t[2]));
-  //if(t[0]==4&&t[1]==5&&t[2]==6)
-    //cout<<"calc: "<<p<<endl;
   return ret;
 }
 
@@ -39,12 +37,6 @@ void DynamicProgram(){
         int a=1<<(state[i]-1),b=1<<(state[j]-1),c=1<<(state[k]-1);
         if(DP[cBit]<DP[a|b|c]+DP[cBit^(a|b|c)])DP[cBit]=DP[a|b|c]+DP[cBit^(a|b|c)];
         if(res<DP[cBit])res=DP[cBit];
-        if(cBit==0b1111110){
-          //cout<<"NOW"<<endl;
-        }
-        if((a|b|c)==0b1110&&(cBit^(a|b|c))==0b1110000){
-          //cout<<"NOW "<<a<<" "<<b<<" "<<c<<" "<<DP[a|b|c]<<" "<<DP[cBit^(a|b|c)]<<endl;
-        }
       }
     }
   }
@@ -56,9 +48,6 @@ void backTracking(int target){
       int cBit=intToBit();
       DP[cBit]=calc(state[tail-1],state[tail-2],state[tail-3]);
       if(res<DP[cBit])res=DP[cBit];
-      if(cBit==0b1110){
-        //cout<<"HERE"<<DP[cBit]<<endl;
-      }
     }
     else DynamicProgram();
     return;
