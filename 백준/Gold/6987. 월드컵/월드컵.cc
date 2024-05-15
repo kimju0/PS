@@ -1,9 +1,7 @@
 #include <iostream>
-
 using namespace std;
 int inp[4][6][3], res[4];
 int state[6][3];
-
 void check() {
     bool flag;
     for (int i = 0; i < 4; i++) {
@@ -15,16 +13,11 @@ void check() {
                     break;
                 }
             }
-            if (!flag) {
-                break;
-            }
+            if (!flag) break;
         }
-        if (flag) {
-            res[i] = 1;
-        }
+        if (flag) res[i] = 1;
     }
 }
-
 void backTracking(int s, int e) {
     if (s == 6) {
         check();
@@ -43,9 +36,7 @@ void backTracking(int s, int e) {
     state[s][1]++, state[e][1]++;
     backTracking(s, e + 1);
     state[s][1]--, state[e][1]--;
-
 }
-
 int main() {
     for (int i = 0; i < 4; i++) {
         for (int j = 0; j < 6; j++) {
