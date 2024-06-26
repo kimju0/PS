@@ -2,6 +2,7 @@
 #include <cassert>
 
 using namespace std;
+int C[2][17001];
 unsigned char DP[17001][4251];//a:00, d:01, m:10, c:11
 enum method {
     a, d, m, c,
@@ -18,19 +19,15 @@ char converter(method meth) {
 
 void set_dp(int y, int x, method m) {
     int shift = x % 4;
-    //cout<<"DEBUG---"<<m<<endl;
     DP[y][x / 4] |= ((int)m << (shift*2));
 }
 
 method get_dp(int y, int x) {
     int mask = 3, shift = x % 4;
-    //cout<<"DEBUG"<<(int)DP[y][x/4]<<endl;
     return static_cast<method>((DP[y][x / 4] >> (shift*2)) & mask);
 }
 
 void print(int y, int x) {
-    assert(y>=0);
-    assert(x>=0);
     if (y == 0 && x == 0)return;
     method meth = get_dp(y, x);
     int ny = y + dy[meth], nx = x + dx[meth];
@@ -44,8 +41,6 @@ void print(int y, int x) {
 }
 
 int main() {
-
-    int C[2][17001];
     cin >> in >> out;
     for (int i = 1; i <= in.size(); i++) {
         C[0][i] = i;
@@ -72,8 +67,6 @@ int main() {
             C[1][j] = cost;
             set_dp(i, j, meth);
         }
-
-        //update array C
         for (int j = 0; j <= in.size(); j++) {
             C[0][j] = C[1][j];
         }
